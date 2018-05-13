@@ -1,0 +1,61 @@
+<!DOCTYPE html> 
+
+<html>
+<head>
+  <title>Javascript Racer - v6 (TRC)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <link href="common.css" rel="stylesheet" type="text/css" />
+  <style>
+    #racer {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      margin-left: 0;
+      border: none;
+    }
+
+    #hud {
+      width: 100%;
+    }
+
+    #canvas {
+      width: 100%;
+      height: 100%;
+    }
+  </style>
+</head> 
+
+<body> 
+
+  <table id="controls">
+    <tr><td id="fps" colspan="2" align="right"></td></tr>
+  </table>
+
+  <div id="racer">
+    <div id="hud">
+      <span id="speed"            class="hud"><span id="speed_value" class="value">0</span> mph</span>
+      <span id="current_lap_time" class="hud">Time: <span id="current_lap_time_value" class="value">0.0</span></span> 
+      <span id="current_level" class="hud">Level: <span id="current_level_value" class="value">0</span></span> 
+      <span id="turbo_left" class="hud">Turbo: <span id="turbo_left_value" class="value">0</span></span> 
+      <span id="remaining_time" class="hud">Time: <span id="remaining_time_value" class="value">0.0</span></span> 
+      <span id="last_lap_time"    class="hud">Last Lap: <span id="last_lap_time_value" class="value">0.0</span></span>
+      <span id="fast_lap_time"    class="hud">Fastest Lap: <span id="fast_lap_time_value" class="value">0.0</span></span>
+    </div>
+    <canvas id="canvas">
+      Sorry, this example cannot be run because your browser does not support the &lt;canvas&gt; element
+    </canvas>
+    Loading...
+  </div>
+
+  <script src="stats.js"></script>
+  <script src="common.js"></script>
+  <script src="racer.js"></script>
+  <script src="faker.js"></script>
+  <script>
+    racer(2); // initiate the game
+  </script>
+
+</body> 
+</html>

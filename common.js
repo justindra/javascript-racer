@@ -232,15 +232,17 @@ var Game = {  // a modified version of the game loop from my previous boulderdas
 
   playMusic: function() {
     var music = Dom.get('music');
-    music.loop = true;
-    music.volume = 0.05; // shhhh! annoying music!
-    music.muted = (Dom.storage.muted === "true");
-    music.play();
-    Dom.toggleClassName('mute', 'on', music.muted);
-    Dom.on('mute', 'click', function() {
-      Dom.storage.muted = music.muted = !music.muted;
+    if (music) {
+      music.loop = true;
+      music.volume = 0.05; // shhhh! annoying music!
+      music.muted = (Dom.storage.muted === "true");
+      music.play();
       Dom.toggleClassName('mute', 'on', music.muted);
-    });
+      Dom.on('mute', 'click', function() {
+        Dom.storage.muted = music.muted = !music.muted;
+        Dom.toggleClassName('mute', 'on', music.muted);
+      });
+    }
   }
 
 }
@@ -343,16 +345,19 @@ var Render = {
 
   player: function(ctx, width, height, resolution, roadWidth, sprites, speedPercent, scale, destX, destY, steer, updown) {
 
-    var bounce = (1.5 * Math.random() * speedPercent * resolution) * Util.randomChoice([-1,1]);
-    var sprite;
-    if (steer < 0)
-      sprite = (updown > 0) ? SPRITES.PLAYER_UPHILL_LEFT : SPRITES.PLAYER_LEFT;
-    else if (steer > 0)
-      sprite = (updown > 0) ? SPRITES.PLAYER_UPHILL_RIGHT : SPRITES.PLAYER_RIGHT;
-    else
-      sprite = (updown > 0) ? SPRITES.PLAYER_UPHILL_STRAIGHT : SPRITES.PLAYER_STRAIGHT;
+    // ONLY DO WHEN CAR SHOW IS NEEDED
+    if (Car && Car.show) {
+      var bounce = (1.5 * Math.random() * speedPercent * resolution) * Util.randomChoice([-1,1]);
+      var sprite;
+      if (steer < 0)
+        sprite = (updown > 0) ? SPRITES.PLAYER_UPHILL_LEFT : SPRITES.PLAYER_LEFT;
+      else if (steer > 0)
+        sprite = (updown > 0) ? SPRITES.PLAYER_UPHILL_RIGHT : SPRITES.PLAYER_RIGHT;
+      else
+        sprite = (updown > 0) ? SPRITES.PLAYER_UPHILL_STRAIGHT : SPRITES.PLAYER_STRAIGHT;
 
-    Render.sprite(ctx, width, height, resolution, roadWidth, sprites, sprite, scale, destX, destY + bounce, -0.5, -1);
+      Render.sprite(ctx, width, height, resolution, roadWidth, sprites, sprite, scale, destX, destY + bounce, -0.5, -1);
+    }
   },
 
   //---------------------------------------------------------------------------

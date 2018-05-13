@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Page Title</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body {
+      margin: 0;
+    }
+    .frame {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+  </style>  
+</head>
+<body>
+  <iframe class="frame" src="v6.trc.html"></iframe>
+
+  <script>
+    document.addEventListener('car', function(evt) {
+      console.log(evt.detail);
+    });
+  </script>
+</body>
+</html>
